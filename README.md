@@ -112,7 +112,7 @@ throttle: The scene is generally a button click. 10 clicks in one second will in
 
 ## Commonly used regular judgment
 ```js
-    // Check 2-9 characters, false if not matched, true if matched
+// Check 2-9 characters, false if not matched, true if matched
     const validateName = (name) => {
       const reg = /^[\u4e00-\u9fa5]{2,9}$/;
       return reg.test(name);
@@ -127,7 +127,7 @@ throttle: The scene is generally a button click. 10 clicks in one second will in
       const reg = /^[a-zA-Z0-9_]{6,18}$/;
       return reg.test(password);
     };
-Initialize the array
+// Initialize array
 // The fill() method is a new method in es6 that fills the array with the specified element, which is actually initializing the array with the default content
     const arrList = Array(6).fill()
     console.log(arrList)  // What is printed here is['','','','','','']
@@ -140,24 +140,27 @@ Initialize the array
     }
     
     getColorFun(178,232,55) // The output here is #b2e837
-Check if it is a function
-// Detecting whether it is a function In fact, it is good to write isFunction directly after writing, so as to avoid repeated writing judgments
+```
+## Check if it is a function
+```js
+    // Detecting whether it is a function In fact, it is good to write isFunction directly after writing, so as to avoid repeated writing judgments
     const isFunction = (obj) => {
         return typeof obj === "function" && typeof obj.nodeType !== "number" && typeof obj.item !== "function";
     };
-Check if it is a safe array
+```
+## Check if it is a safe array
+```js
 // Check if it is a safe array, if not, return an empty array here with the isArray method
   const safeArray = (array) => {
     return Array.isArray(array) ? array : []
   }
-Check if an object is a secure object
+```
+## Check if an object is a secure object
+```js
 //First of all, we need to determine whether the current object is a valid object
     const isVaildObject = (obj) => {
         return typeof obj === 'object' && !Array.isArray(obj) && Object.keys(obj).length
     }
-    // The above function is used directly here. If it is valid, it will return itself, and if it is invalid, it will return an empty object.
+// The above function is used directly here. If it is valid, it will return itself, and if it is invalid, it will return an empty object.
     const safeObject = obj => isVaildObject(obj) ? obj : {}
 ```
-
-
-
