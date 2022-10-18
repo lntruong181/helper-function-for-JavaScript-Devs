@@ -1,7 +1,8 @@
 # build-in-func-for-JavaScript-Devs
 
-Back to the top
-const bindTop = () => {
+## Back to the top
+```js
+    const bindTop = () => {
        // Method 1: This works, but it doesn't work very well
        window.scrollTo(0, 0)
        document.documentElement.scrollTop = 0;
@@ -16,8 +17,11 @@ const bindTop = () => {
         }
       }, 10)
     }
-Copy text
-const copyText = (text) => {
+```
+
+## Copy text
+```js
+   const copyText = (text) => {
         // clipboardData Copy what you need on the page to the clipboard
         const clipboardData = window.clipboardData
         if (clipboardData) {
@@ -42,8 +46,8 @@ const copyText = (text) => {
         return false
       }
       copyText('hello!') // ctrl + v = copyText  | true
-Debounce/Throttle
-basic introduction
+```
+## Debounce/Throttle
 
 debounce: trigger an event frequently within a specified time, whichever is the last trigger
 throttle: an event is triggered frequently within a specified time, but only once
@@ -52,8 +56,8 @@ There are many application scenarios such as:
 debounce: input search, when users continue to input content, use anti-shake to reduce the number of requests and save request resources
 
 throttle: The scene is generally a button click. 10 clicks in one second will initiate 10 requests. After throttling, if you click multiple times in 1 second, it will only be triggered once.
-
-Let’s implement
+```js
+   Let’s implement
 
 // debounce
     // fn is the function that needs debounce, delay is the timer time
@@ -84,8 +88,11 @@ Let’s implement
         }, 1000);
       };
     }
-Filter special characters
-function filterCharacter(str){
+```
+
+## Filter special characters
+```js
+    function filterCharacter(str){
         // First set a mode
         let pattern = new RegExp("[`~!@#$^&*()=：”“'。，、？|{}':;'%,\\[\\].<>/?~！@#$……&*（）&;—|{ }【】‘；]")
         let resultStr1 = "";
@@ -99,8 +106,13 @@ function filterCharacter(str){
     
     // Example
     filterCharacter('gyaskjdhy12316789#$%^&!@#1=123,./[') // Result: gyaskjdhy123167891123
-Commonly used regular judgment
-// Check 2-9 characters, false if not matched, true if matched
+```
+
+
+
+## Commonly used regular judgment
+```js
+    // Check 2-9 characters, false if not matched, true if matched
     const validateName = (name) => {
       const reg = /^[\u4e00-\u9fa5]{2,9}$/;
       return reg.test(name);
@@ -119,8 +131,11 @@ Initialize the array
 // The fill() method is a new method in es6 that fills the array with the specified element, which is actually initializing the array with the default content
     const arrList = Array(6).fill()
     console.log(arrList)  // What is printed here is['','','','','','']
-Convert RGB to Hex
-function getColorFun(r,g,b) {
+```
+
+## Convert RGB to Hex
+```js
+   function getColorFun(r,g,b) {
        return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)
     }
     
@@ -142,3 +157,7 @@ Check if an object is a secure object
     }
     // The above function is used directly here. If it is valid, it will return itself, and if it is invalid, it will return an empty object.
     const safeObject = obj => isVaildObject(obj) ? obj : {}
+```
+
+
+
