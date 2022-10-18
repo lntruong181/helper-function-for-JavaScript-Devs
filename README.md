@@ -164,3 +164,62 @@ throttle: The scene is generally a button click. 10 clicks in one second will in
 // The above function is used directly here. If it is valid, it will return itself, and if it is invalid, it will return an empty object.
     const safeObject = obj => isVaildObject(obj) ? obj : {}
 ```
+
+## Determine if it is mobile
+```js
+const userAgent = () => {
+  const u = navigator.userAgent;
+  return {
+    trident: u.includes('Trident'),
+    presto: u.includes('Presto'),
+    webKit: u.includes('AppleWebKit'),
+    gecko: u.includes('Gecko') && !u.includes('KHTML'),
+    mobile: !!u.match(/AppleWebKit.*Mobile.*/),
+    ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+    android: u.includes('Android') || u.includes('Adr'),
+    iPhone: u.includes('iPhone'),
+    iPad: u.includes('iPad'),
+    webApp: !u.includes('Safari'),
+    weixin: u.includes('MicroMessenger'),
+    qq: !!u.match(/\sQQ/i),
+  };
+};
+
+const isMobile = () => {
+  if (!isBrowser()) {
+    return false;
+  }
+  const { mobile, android, ios } = userAgent();
+  return mobile || android || ios || document.body.clientWidth < 750;
+};
+```
+
+## Determine if the page is in an iframe frame
+```js
+const isInIframe = (): boolean => {
+  try {
+    return (
+      self !== top ||
+      self.frameElement?.tagName === 'IFRAME' ||
+      window.frames.length !== parent.frames.length
+    );
+  } catch {
+    return true;
+  }
+};
+```
+
+## Implement a compose function
+```js
+const compose = (...funcs) => {
+  if (funcs.length === 0) {
+    return arg => arg;
+  }
+  if (funcs.length === 1) {
+    return funcs[0];
+  }
+  return funcs.reduce((a, b) => {
+    return (...args) => a(b(...args));
+  });
+};
+```
