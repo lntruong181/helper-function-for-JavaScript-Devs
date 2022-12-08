@@ -1,4 +1,4 @@
-# build-in-func-for-JavaScript-Devs
+# helper function for Javascript Devs
 
 ## Back to the top
 ```js
