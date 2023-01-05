@@ -223,3 +223,10 @@ const compose = (...funcs) => {
   });
 };
 ```
+
+## exactly typeof
+```js
+const typeOf = (value) => {
+  return Object.prototype.toString.call(value).slice(8, -1)
+};
+```
