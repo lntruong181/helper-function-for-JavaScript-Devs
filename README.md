@@ -57,9 +57,7 @@ debounce: input search, when users continue to input content, use anti-shake to 
 
 throttle: The scene is generally a button click. 10 clicks in one second will initiate 10 requests. After throttling, if you click multiple times in 1 second, it will only be triggered once.
 ```js
-   Let’s implement
-
-// debounce
+    // debounce
     // fn is the function that needs debounce, delay is the timer time
     function debounce(fn,delay){
         let timer =  null  // for saving the timer
@@ -89,6 +87,54 @@ throttle: The scene is generally a button click. 10 clicks in one second will in
       };
     }
 ```
+
+
+## Once
+The Once function is a method that will prevent executing if already called. This is especially useful while working with event listeners, where you often encounter functions that only should run once. Instead of removing event listeners every time you can use the Once function in JavaScript.
+
+```js
+    function once(func) {
+      let ran = false;
+      let result;
+      return function() {
+        if (ran) return result;
+        result = func.apply(this, arguments);
+        ran = true;
+        return result;
+      };
+    }
+```
+
+For example, you can have a function that sends a request to a server to load some data. With the once() function, you could ensure that the request is not called multiple times if the user keeps clicking the button. This will avoid performance issues.
+
+Without the once() function, you would remove the click listener instantly after the request is sent to prevent sending the request again.
+
+Applying the once() function to any code will look like this:
+```js
+    // Define the function that sends the request
+    function requestSomeData() {
+      // Send the request...
+    }
+
+    // Create a version of the function that can only be called once
+    const sendRequestOnce = once(sendRequest);
+
+    // Listen for clicks on a button and call the "once" function
+    const button = document.querySelector("button");
+    button.addEventListener("click", sendRequestOnce);
+```
+In this example, the requestSomeData function will be called once, even if the user clicks the button multiple times.
+
+## Pipe
+The Pipe function is a utility function used to chain multiple functions and pass the output of one to the next one in the chain. It is similar to the Unix pipe operator and will apply all functions left-to-right by using the JavaScript reduce() function:
+```js
+    function pipe(...funcs) {
+      return function piped(...args) {
+        return funcs.reduce((result, func) => [func.call(this, ...result)], args)[0];
+      };
+    }
+```
+
 
 ## Filter special characters
 ```js
